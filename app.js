@@ -226,5 +226,6 @@ function renderizarGrid(pelis){
             </div>
         </div>
         `
+        
     ).join("");
 }
