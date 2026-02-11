@@ -58,6 +58,51 @@ function aplicarFiltros(){
     renderizarGrid(peliculasFiltradas);
 }
 
+function guardarPelicula(){
+    let peliculas = JSON.parse(localStorage.getItem("peliculas")) || [];
+
+    let nuevaPelicula = {
+        id: Date.now(),
+        titulo: document.querySelector("#inputTitulo").value.trim(),
+        genero: document.querySelector("#inputGenero").value,
+        director: document.querySelector("#inputDirector").value.trim(),
+        ano: Number(document.querySelector("#inputAno").value),
+        calificacion: Number(document.querySelector("#inputCalificacion").value),
+        descripcion: document.querySelector("#inputDescripcion").value.trim(),
+        imagen: document.querySelector("#inputImagen").value.trim()
+    };
+
+    // Validaciones
+    if(
+        !nuevaPelicula.titulo ||
+        !nuevaPelicula.genero ||
+        !nuevaPelicula.director ||
+        !nuevaPelicula.ano ||
+        !nuevaPelicula.calificacion ||
+        !nuevaPelicula.descripcion ||
+        !nuevaPelicula.imagen
+    ){
+        alert("Completa todos los campos");
+        return;
+    }
+
+    peliculas.push(nuevaPelicula);
+    localStorage.setItem("peliculas", JSON.stringify(peliculas));
+
+    // refrescar estado global
+    peliculasGlobales = peliculas;
+
+    renderizarGrid(peliculasGlobales);
+    aplicarFiltros(); // mantiene filtros activos
+
+    document.querySelector("#formPelicula").reset();
+
+    // cerrar modal
+    bootstrap.Modal
+        .getInstance(document.querySelector("#modalAdd"))
+        .hide();
+}
+
 
 //=============eventos del usuario=========//
 function eventos(){
@@ -68,6 +113,8 @@ function eventos(){
     // 🔍 filtros
     document.querySelector("#inputBuscar").addEventListener("input", aplicarFiltros);
     document.querySelector("#selectGenero").addEventListener("change", aplicarFiltros);
+
+    document.querySelector("#btnGuardarPelicula").addEventListener("click", guardarPelicula);
 }
 
 
