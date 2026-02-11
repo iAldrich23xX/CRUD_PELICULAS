@@ -38,14 +38,36 @@ function cargarUsuariosRegistrados(){
         Object.assign(USUARIOS,usuariosRegistrados);
     }
 }
+
+function aplicarFiltros(){
+    let texto = document.querySelector("#inputBuscar").value.toLowerCase();
+    let genero = document.querySelector("#selectGenero").value.toLowerCase();
+
+    let peliculasFiltradas = peliculasGlobales.filter(p => {
+
+        let coincideTexto =
+            p.titulo.toLowerCase().includes(texto) ||
+            p.director.toLowerCase().includes(texto);
+
+        let coincideGenero =
+            genero === "" || p.genero.toLowerCase().includes(genero);
+
+        return coincideTexto && coincideGenero;
+    });
+
+    renderizarGrid(peliculasFiltradas);
+}
+
+
 //=============eventos del usuario=========//
 function eventos(){
-    //boton login
-    document.querySelector("#formLogin").addEventListener("submit",login)
-    //boton logout
-    document.querySelector("#btnSalir").addEventListener("click",logout)
-    //boton register
-    document.querySelector("#formRegistro").addEventListener("submit",registrar)
+    document.querySelector("#formLogin").addEventListener("submit", login);
+    document.querySelector("#btnSalir").addEventListener("click", logout);
+    document.querySelector("#formRegistro").addEventListener("submit", registrar);
+
+    // 🔍 filtros
+    document.querySelector("#inputBuscar").addEventListener("input", aplicarFiltros);
+    document.querySelector("#selectGenero").addEventListener("change", aplicarFiltros);
 }
 
 

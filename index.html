@@ -107,51 +107,6 @@
     </div>
 </section>
 
-<!-- SECCIÓN PRINCIPAL (oculta hasta login) -->
-<div id="mainContent" style="display: none;">
-    <!-- BUSCADOR Y FILTRO -->
-    <div class="container my-4">
-        <div class="row g-3">
-            <div class="col-md-6">
-                <input type="text" id="inputBuscar" class="form-control" placeholder="Buscar película...">
-            </div>
-            <div class="col-md-6">
-                <select id="selectGenero" class="form-select">
-                    <option value="">Todos los géneros</option>
-                    <option value="Acción">Acción</option>
-                    <option value="Drama">Drama</option>
-                    <option value="Comedia">Comedia</option>
-                    <option value="Ciencia Ficción">Ciencia Ficción</option>
-                    <option value="Terror">Terror</option>
-                    <option value="Aventura">Aventura</option>
-                </select>
-            </div>
-        </div>
-    </div>
-
-    <!-- SLIDER DE PELÍCULAS RECIENTES -->
-    <div class="container my-4">
-        <h4 class="mb-3">Películas Recientes</h4>
-        <div id="sliderPeliculas" class="slider-container">
-            <button class="slider-btn prev" onclick="scrollSlider(-1)">❮</button>
-            <div id="carouselMovies" class="carousel-movies">
-                <!-- Se llena dinámicamente -->
-            </div>
-            <button class="slider-btn next" onclick="scrollSlider(1)">❯</button>
-        </div>
-    </div>
-
-    <!-- GRID DE PELÍCULAS -->
-    <div class="container my-4">
-        <h4 class="mb-3">Todas las Películas</h4>
-
-        <!-- Se llena dinámicamente -->
-    </div>
-
-</div>
-</div>
-</div>
-
 <!-- MODAL PARA AGREGAR/EDITAR PELÍCULA -->
 <div class="modal fade" id="modalPelicula" tabindex="-1">
     <div class="modal-dialog">
@@ -239,6 +194,27 @@
 </div>
 <!-- Sesion Dashboard -->
 <div id="Dashboard" style="display: none;">
+    <!-- FILTROS -->
+    <div class="container my-4">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <input type="text" id="inputBuscar" class="form-control"
+                       placeholder="Buscar por título o director...">
+            </div>
+            <div class="col-md-6">
+                <select id="selectGenero" class="form-select">
+                    <option value="">Todos los géneros</option>
+                    <option value="Accion">Acción</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Comedia">Comedia</option>
+                    <option value="Ciencia Ficcion">Ciencia Ficción</option>
+                    <option value="Terror">Terror</option>
+                    <option value="Aventura">Aventura</option>
+                </select>
+            </div>
+        </div>
+    </div>
+
     <!--GIRD DE PELICULAS-->
     <div class="container my-4">
         <h4 class="mb-3">Todas las Peliculas</h4>
@@ -283,7 +259,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputDirector" class="form-label">Director</label>
-                        <input type="texto" class="form-control" id="inputDirector"  required>
+                        <input type="text" class="form-control" id="inputDirector"  required>
                     </div>
                     <div class="mb-3">
                         <label for="inputAno" class="form-label">Año</label>
